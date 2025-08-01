@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{% block title %}Smart Trash Classifier{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}"/>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/home" class="nav-item">🏠 Home</a>
+            <a href="/predict" class="nav-item">🗂 Upload Classifier</a>
+            <a href="/webcam" class="nav-item">📷 Webcam Classifier</a>
+        </div>
+        
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem("theme", document.body.classList.contains('dark-mode') ? "dark" : "light");
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add('dark-mode');
+            }
+        };
+
+        document.getElementById("darkModeToggle").addEventListener("click", toggleDarkMode);
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

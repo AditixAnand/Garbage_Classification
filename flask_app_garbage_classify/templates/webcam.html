@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+{% block title %}Webcam Classifier - Smart Trash{% endblock %}
+
+{% block content %}
+<div class="webcam-section">
+    <h1 class="page-title">📷 Webcam Trash Classifier</h1>
+    <p class="subtitle">Use your webcam to identify waste materials in real time.</p>
+
+    <div class="video-container">
+        <video id="video" autoplay playsinline class="video-feed"></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <button onclick="captureAndSend()" class="predict-button webcam-button">📸 Capture & Predict</button>
+
+    <div id="predictionResult" class="result-card" style="display: none;"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const result = document.getElementById('predictionResult');
+
+// Start webcam stream
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => video.srcObject = stream)
+    .catch(err => {
+        console.error('Webcam access error', err);
+        result.style.display = 'block';
+        result.innerHTML = "<p class='error-text'>❌ Could not access webcam. Please allow webcam access and refresh.</p>";
+    });
+
+// Capture frame and send to server
+function captureAndSend() {
+    const ctx = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    ctx.drawImage(video, 0, 0);
+
+    canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('image', blob, 'webcam.jpg');
+
+        result.style.display = 'block';
+        result.innerHTML = "<p class='loading-text'>🔄 Analyzing image...</p>";
+
+        fetch('/predict_webcam', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            result.innerHTML = `
+                <h2>🧠 Prediction: <span>${data.prediction}</span></h2>
+                <p>Confidence: <strong>${data.confidence.toFixed(2)}%</strong></p>
+            `;
+        })
+        .catch(error => {
+            result.innerHTML = `<p class='error-text'>⚠️ Prediction failed. Try again.</p>`;
+            console.error(error);
+        });
+    }, 'image/jpeg');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+
+{% extends "layout.html" %}
+{% block title %}Upload Classifier - Smart Trash{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>📤 Upload Waste Image</h1>
+    <p class="subtitle">Classify trash into categories like battery, plastic, metal, glass, and more using AI.</p>
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+        <label for="imageUpload" class="custom-file-upload">
+            <i class="fa fa-upload"></i> Choose Image
+        </label>
+        <input type="file" name="image" id="imageUpload" accept="image/*" onchange="previewImage(event)" required>
+
+        <img id="preview" class="preview-img" style="display:none; margin-top: 15px; border-radius: 12px; max-width: 100%; box-shadow: 0 0 12px rgba(0,0,0,0.1);">
+
+        <br>
+        <button type="submit" class="predict-button">🔍 Predict</button>
+    </form>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" style="display: none;"></div>
+
+    {% if prediction %}
+    <div class="result-card">
+        <h2>🧠 Prediction: <span class="highlight">{{ prediction }}</span></h2>
+        <p>Confidence: <strong>{{ confidence | round(2) }}%</strong></p>
+        <!-- <img src="{{ url_for('static', filename='flask_app_garbage_classify\\uploads' + filename) }}"
+ class="preview-img" alt="Predicted Image"> -->
+        <p class="info-text">{{ trash_info }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const output = document.getElementById('preview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+# Ignore Streamlit dataset
+streamlit_app_garbage_classify/streamlit_garbage-dataset/
+
+# Ignore Flask dataset
+Flask_app_dataset/
+
+# Ignore uploads (test images etc.)
+uploads/
+
+# Ignore model files
+*.h5
+
+# Ignore archive files
+*.zip
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# VS Code config
+.vscode/
+
+# Environment files
+.env
+*.env

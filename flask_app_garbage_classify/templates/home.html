@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}Home - Smart Trash Classifier{% endblock %}
+
+{% block content %}
+<section class="hero" style="text-align: center; padding: 4rem 2rem; background: linear-gradient(to right, #2c3e50, #4ca1af); color: white;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">♻️ Smart Trash Classifier</h1>
+    <p class="subtitle" style="font-size: 1.3rem;">Sort your waste the smart way – using AI to classify trash via image or webcam.</p>
+    <a href="/predict" class="cta-button" style="margin-top: 2rem; display: inline-block; padding: 0.8rem 2rem; font-size: 1.1rem; background-color: #00c853; color: white; border-radius: 8px; text-decoration: none;">🔍 Try the Classifier</a>
+</section>
+
+<section class="section" style="padding: 3rem 2rem; text-align: center;">
+    <h2>🚀 Our Mission</h2>
+    <p style="max-width: 600px; margin: auto;">We aim to make waste disposal cleaner and more efficient by leveraging machine learning. Classify trash instantly using just a photo, reduce contamination, and support eco-friendly recycling habits.</p>
+</section>
+
+<section class="section features" style="background-color: #f7f7f7; padding: 3rem 2rem;">
+    <h2 style="text-align: center;">✨ Key Features</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
+        <div class="feature-box" style="width: 250px; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h3>🧠 AI Classifier</h3>
+            <p>Built using deep learning and MobileNetV2 for high accuracy across 9+ waste categories.</p>
+        </div>
+        <div class="feature-box" style="width: 250px; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h3>📸 Webcam & Upload</h3>
+            <p>Take a live photo or upload an existing image – seamless and responsive.</p>
+        </div>
+        <div class="feature-box" style="width: 250px; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h3>📊 Confidence Score</h3>
+            <p>Get prediction probability and recycling guidance for each classified item.</p>
+        </div>
+        <div class="feature-box" style="width: 250px; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h3>🌙 Dark Mode</h3>
+            <p>Modern UI with dark/light mode toggle for comfortable browsing.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section tech" style="padding: 3rem 2rem; text-align: center;">
+    <h2>🔧 Technology Stack</h2>
+    <ul style="list-style: none; padding: 0; max-width: 600px; margin: auto; font-size: 1.1rem;">
+        <li>💻 Python + Flask for backend logic and routing</li>
+        <li>🧠 TensorFlow & Keras with MobileNetV2 for deep learning classification</li>
+        <li>🌐 HTML5, CSS3, JS for modern UI & responsive frontend</li>
+    </ul>
+</section>
+
+<section class="section footer" style="padding: 2rem; text-align: center; color: #666;">
+    <p>Made with ❤️ by the Smart Trash Classifier Team. Let's build a cleaner planet together.</p>
+</section>
+{% endblock %}
