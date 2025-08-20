@@ -173,6 +173,15 @@ This project was proudly developed as part of the:
 
 ---
 
+
+
 <p align="center">
   Made with 🧠 and ♻️ by <a href="https://github.com/AditixAnand">Aditix Anand</a> & Contributors
+</p>
+
+
+<p align="center">
+  <a href="#top" style="font-size: 16px; padding: 8px 16px; border: 1px solid #ccc; border-radius: 6px; text-decoration: none;">
+    ⬆️ Back to Top
+  </a>
 </p>
